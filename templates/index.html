@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout Tracker</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 min-h-screen py-8 px-4">
+{% extends "base.html" %}
+
+{% block title %}Workout Tracker{% endblock %}
+
+{% block content %}
     <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Workout Tracker</h1>
         
@@ -23,7 +19,7 @@
             {% if active_session %}
             <div class="mb-4">
                 <p class="text-lg text-gray-600 mb-4">
-                    <span class="font-semibold">Session Active</span> - Started at {{ active_session[2] }} on {{ active_session[1] }}
+                    <span class="font-semibold">Session Active</span> - Started at {{ active_session.start_time }} on {{ active_session.date }}
                 </p>
                 <form action="/end_session" method="POST" class="inline-block">
                     <button type="submit"
@@ -376,6 +372,5 @@
             {% endif %}
         });
     </script>
-</body>
-</html>
+{% endblock %}
 
