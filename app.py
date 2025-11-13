@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key-change-this-in-production'  # Change this in production!
+app.config['SECRET_KEY'] = 'My_secret_key_is_secret'  # Change this in production!
 
 # Initialize Flask-Login
 login_manager = LoginManager()
@@ -393,6 +393,10 @@ def index():
         
         # Check for error messages
         error = request.args.get('error')
+        if error and active_session:
+            # Clear stale error messages when a session is now active
+            return redirect(url_for('index'))
+
         error_message = None
         if error == 'no_session':
             error_message = 'Please start a gym session before logging workouts.'

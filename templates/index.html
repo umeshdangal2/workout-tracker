@@ -52,7 +52,7 @@
             </div>
             {% endif %}
             <h2 class="text-2xl font-semibold mb-6 text-gray-700">Log New Workout</h2>
-            <form action="/submit" method="POST" class="space-y-6">
+            <form id="workout-form" action="/submit" method="POST" class="space-y-6">
                 <!-- Muscle Group Dropdown -->
                 <div>
                     <label for="muscle_group" class="block text-lg font-medium text-gray-700 mb-2">Muscle Group</label>
@@ -278,7 +278,7 @@
         let setCounter = 1;
         const addSetBtn = document.getElementById('add-set-btn');
         const setsList = document.getElementById('sets-list');
-        const workoutForm = document.querySelector('form');
+        const workoutForm = document.getElementById('workout-form');
 
         // Function to reset form after successful submission
         function resetForm() {
@@ -363,7 +363,6 @@
         });
         
         // Prevent form submission if no active session
-        const workoutForm = document.querySelector('form');
         workoutForm.addEventListener('submit', function(e) {
             {% if not active_session %}
             e.preventDefault();
